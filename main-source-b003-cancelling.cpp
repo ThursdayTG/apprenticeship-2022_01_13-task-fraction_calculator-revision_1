@@ -11,6 +11,9 @@ using	std::cin;
 
 
 // function prototyping
+int		cancellingNum(int, int);
+int		cancellingDen(int, int);
+
 float	A(float, float, float, float);
 float	B(float, float, float, float);
 float	C(float, float, float, float);
@@ -41,15 +44,36 @@ int main() {
 
 			loop = false;
 
-			// user input
+			// user input pt1
 			cout	<< " \n input fraction 1 (numerator1 - charInput - denominator1) \n ";
 			cin		>> inputNumerator1 >> inputChar1 >> inputDenominator1;
 
+			int storagemerator1 = inputNumerator1;
+
+			inputNumerator1		= cancellingNum(inputNumerator1, inputDenominator1);
+			inputDenominator1	= cancellingDen(storagemerator1, inputDenominator1);
+
+			cls();
+			cout	<< " \n input fraction 1 (numerator1 - charInput - denominator1) \n "
+					<< inputNumerator1 << inputChar1 << inputDenominator1;
+
+
+			// user input pt2
 			cout	<< " \n input mathematical operator (A/B/C/D) \n ";
 			cin		>> inputChar2;
 
+
+			// user input p3
 			cout	<< " \n input fraction 2 (numerator2 - charInput - denominator2) \n ";
 			cin		>> inputNumerator2 >> inputChar1 >> inputDenominator2;
+
+			cls();
+			cout	<< " \n input fraction 1 (numerator1 - charInput - denominator1) \n "
+					<< inputNumerator1 << inputChar1 << inputDenominator1
+					<< " \n "
+					<< inputChar2
+					<< " \n input fraction 2 (numerator2 - charInput - denominator2) \n "
+					<< inputNumerator2 << inputChar2 << inputDenominator2;
 
 
 			// primary function execution
@@ -91,6 +115,32 @@ int main() {
 
 
 // functions / subroutines
+int cancellingNum(int numerator, int denominator) {
+	for	(int i = 2;    i <= numerator + denominator;    i++) {
+		if (numerator % i == 0) {
+			if (denominator % i == 0) {
+				return numerator / i;
+			}
+		}
+	}
+
+	return numerator;
+}
+
+int cancellingDen(int numerator, int denominator) {
+	for	(int i = 2;    i <= numerator + denominator;    i++) {
+		if (numerator % i == 0) {
+			if (denominator % i == 0) {
+				return denominator / i;
+			}
+		}
+	}
+
+	return denominator;
+}
+
+
+
 float A(float inputNumerator1, float inputDenominator1, float inputNumerator2, float inputDenominator2) {
 
 	float	fraction1 = inputNumerator1 / inputDenominator1;
@@ -130,18 +180,18 @@ float D(float inputNumerator1, float inputDenominator1, float inputNumerator2, f
 
 
 /* compilation with GCC via console
-g++ -Og main-source-b002-basic_functionality.cpp -o main-newest.debug && clear && g++ -O3 -Wall -Wextra -Wpedantic -Werror main-source-b002-basic_functionality.cpp -o main-newest.release && ./main-newest.release
+g++ -Og main-source-b003-cancelling.cpp -o main-newest.debug && clear && g++ -O3 -Wall -Wextra -Wpedantic -Werror main-source-b003-cancelling.cpp -o main-newest.release && ./main-newest.release
 	compile for debug and check for errors:
-g++ -Og -Wall -Wextra -Wpedantic -Werror main-source-b002-basic_functionality.cpp -o main-newest.debug
+g++ -Og -Wall -Wextra -Wpedantic -Werror main-source-b003-cancelling.cpp -o main-newest.debug
 
 	clear and compile as final executable:
-clear && g++ -O3 main-source-b002-basic_functionality.cpp -o main-newest.release
+clear && g++ -O3 main-source-b003-cancelling.cpp -o main-newest.release
 
 	clear console, compile debug executable, compile release executable, check for errors, and run program:
-g++ -Og main-source-b002-basic_functionality.cpp -o main-newest.debug && clear && g++ -O3 -Wall -Wextra -Wpedantic -Werror main-source-b002-basic_functionality.cpp -o main-newest.release && ./main-newest.release
+g++ -Og main-source-b003-cancelling.cpp -o main-newest.debug && clear && g++ -O3 -Wall -Wextra -Wpedantic -Werror main-source-b003-cancelling.cpp -o main-newest.release && ./main-newest.release
 
-	g++ -Og main-source-b002-basic_functionality.cpp -o main-newest.debug
+	g++ -Og main-source-b003-cancelling.cpp -o main-newest.debug
  && clear
- && g++ -O3 -Wall -Wextra -Wpedantic -Werror main-source-b002-basic_functionality.cpp -o main-newest.release
+ && g++ -O3 -Wall -Wextra -Wpedantic -Werror main-source-b003-cancelling.cpp -o main-newest.release
  && ./main-newest.release
 */
